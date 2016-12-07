@@ -4,6 +4,7 @@ The different files to down:
 
 ===================================
 LAMMPS source C++ code, headers:
+===================================
 for the GLE 1 bath problem
 ===================================
 fix_gle.cpp
