@@ -31,7 +31,7 @@ parameters_and_co_readdynmat_v5_fit_eVAng.f90
 
 makefile_readdynmat_v5_fit_newinput
 
-polar_matrix_PIbb_readdynmat_v11_fit_withCregion newinput.f90
+polar_matrix_PIbb_readdynmat_v11_fit_withCregion_newinput.f90
 
 parameters_and_co_readdynmat_v11_fit_withCregion_newinput.f90
 
