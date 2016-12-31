@@ -139,7 +139,7 @@ velocity system_atoms create 030.0 4928459 rot yes dist gaussian
 # ---------- Define FIX --------------------- 
 
 
-fix 555 system_atoms gle 0.01 699483 bath_reduced 100.0 032.0 doffile fit_coef_taukomegak_lmp.dat bathfile fit_coef_cbk_lmp.dat 
+fix 555 system_atoms gle1bath 0.01 699483 bath_reduced 100.0 032.0 doffile fit_coef_taukomegak_lmp.dat bathfile fit_coef_cbk_lmp.dat 
 
 
 
