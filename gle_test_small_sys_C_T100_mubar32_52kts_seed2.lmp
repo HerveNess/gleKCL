@@ -1,0 +1,150 @@
+# 3d Lennard-Jones Cu cluster
+
+# ---------- Initialize Simulation --------------------- 
+units		metal
+#boundary	f f f
+atom_style	atomic
+
+
+# ---------- Create Atoms --------------------- 
+lattice 	fcc 4.025
+
+region  	myreg block 	0 24 & 
+                    		0 24 &
+                    		0 24 
+create_box   	1 myreg
+create_atoms 	1 region myreg
+
+
+region 		sphere1 sphere 12 12 12  1.1 side in
+group system_atoms region sphere1
+
+region 		sphere2   sphere 12 12 12  2.0 side out
+delete_atoms 	region sphere2
+group all region sphere2
+
+region 		sphere3   sphere 12 12 12  1.8 side in
+group tmp region sphere3
+
+group bath_reduced subtract tmp system_atoms
+
+group bath_atoms   subtract all system_atoms
+
+group tmpout subtract bath_atoms bath_reduced
+delete_atoms	group tmpout
+
+
+#
+#	Delete atoms in group system
+#	need that to perform Dynamical Matrix calc.
+#	on bath atoms only
+#
+#delete_atoms	group system_atoms
+#
+
+
+
+mass		1 63.55
+
+
+
+# ---------- Define Interatomic Potential --------------------- 
+
+pair_style 	lj/cut 9.0
+pair_coeff 	* * 0.583 2.77
+
+
+
+# ---------- Define Compute & Outputs --------------------- 
+
+compute Ekin system_atoms ke/atom 
+compute Ektot system_atoms ke
+
+compute veloc system_atoms vacf
+
+
+thermo		1
+thermo_style 	custom step c_Ektot c_veloc[4]
+ 
+#thermo		2
+#thermo_style 	custom step c_veloc[4]
+
+ 
+
+# ----------  HN other group(s) & dump(s) --------------------- 
+
+
+dump 		8 system_atoms custom 1 Ekin_sys_at_T100_mubar32_sk1_rescaled_cbk_52kts_seed2_vacf.dat id c_Ekin
+dump_modify 	8 sort id
+
+
+dump		1 system_atoms xyz 040 coord_sys_at.xyz
+dump_modify 	1 element Cu
+
+dump		11 system_atoms custom 1000 coord_sys_at.dat id x y z
+
+dump		12 system_atoms custom 1000 coord_sys_at_sort.dat id x y z
+dump_modify 	12 sort id
+
+
+#dump		2 bath_atoms xyz 5000 coord_bath_at.xyz
+#dump_modify 	2 element Cu
+
+#dump 		7 bath_atoms custom 5000 coord_bath_at.dat id x y z 
+#dump_modify 	7 sort id
+
+
+dump		4 bath_reduced xyz 5000 coord_bathreduced_at.xyz
+dump_modify 	4 element Cu
+
+dump 		5 bath_reduced custom 5000 coord_bathreduced_at.dat id x y z mass
+
+dump 		15 bath_reduced custom 5000 coord_bathreduced_at_sort.dat id x y z mass
+dump_modify 	15 sort id
+
+
+#dump 		9 all custom 1000 coord_all_at.dat id x y z
+
+#dump 		19 all custom 1000 coord_all_at_sort.dat id x y z
+#dump_modify 	19 sort id
+
+
+#dump		6 all xyz 040 coord_all_at.xyz
+#dump_modify 	6 element Cu 
+
+
+dump 		17 system_atoms custom 100 velocities.dat id vx vy vz
+dump_modify 	17 sort id
+
+
+dump 		3 system_atoms custom 001 forces.dat id type fx fy fz
+dump_modify 	3 sort id
+
+
+
+# ---------- Define Settings --------------------- 
+
+
+velocity bath_reduced set 0. 0. 0.
+
+#velocity bath_atoms set 0. 0. 0.
+#fix 1 bath_reduced freeze 
+
+velocity system_atoms create 030.0 4928459 rot yes dist gaussian
+
+#velocity system_atoms set 0.05 0.05 0.05
+
+
+
+# ---------- Define FIX --------------------- 
+
+
+fix 555 system_atoms gle 0.01 699483 bath_reduced 100.0 032.0 doffile fit_coef_taukomegak_lmp.dat bathfile fit_coef_cbk_lmp.dat 
+
+
+
+timestep 0.001
+
+run 	00000
+#run 	52000
+

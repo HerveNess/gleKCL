@@ -1,0 +1,156 @@
+# 3d Lennard-Jones Cu cluster
+
+# ---------- Initialize Simulation --------------------- 
+units		metal
+#boundary	f f f
+atom_style	atomic
+
+
+# ---------- Create Atoms --------------------- 
+lattice 	fcc 4.025
+
+region  	myreg block 	0 24 &
+                    		0 24 &
+                    		0 24 
+create_box   	1 myreg
+create_atoms 	1 region myreg
+
+
+region 		sphere1 sphere 12 12 12  1.1 side in
+group system_atoms region sphere1
+
+region 		sphere2   sphere 12 12 12  2.0 side in
+#delete_atoms 	region sphere2
+group allsys region sphere2
+
+region 		sphereOUT   sphere 12 12 12  2.0 side out
+delete_atoms 	region sphereOUT
+
+region 		sphere3   sphere 12 12 12  1.8 side in
+group tmp region sphere3
+
+group bath_reduced subtract tmp system_atoms
+
+group bath_atoms   subtract allsys system_atoms
+
+#	need that to perform Dynamical Matrix calc.
+#	on bath atoms only in the presence of the Central region
+
+
+
+mass		1 63.55
+
+
+
+
+# ---------- Define Interatomic Potential --------------------- 
+pair_style 	lj/cut 9.0
+pair_coeff 	1 1 0.583 2.77
+
+# ---------- Define Settings --------------------- 
+
+thermo_style 	custom step temp epair emol etotal press lx ly lz
+ 
+dump		1 all xyz 1000 config.xyz
+dump_modify 	1 element Cu
+
+dump		3 all custom 1 config_all_at_sort.dat id x y z
+dump_modify 	3 sort id
+
+#minimize	0 0 10000 100000 
+
+#run 		0
+
+variable 	y equal count(ok)
+
+variable        nbtot equal atoms
+variable 	nbbath equal count(bath_atoms)
+
+
+#run 		0
+
+dump 		2 all custom 1 forces.dat id fx fy fz mass
+dump_modify 	2 sort id
+
+dump		11 system_atoms custom 1 coord_sys_at.dat id x y z
+
+dump		12 system_atoms custom 1 coord_sys_at_sort.dat id x y z
+dump_modify 	12 sort id
+
+
+dump 		7 bath_atoms custom 1 coord_bath_at.dat id x y z 
+
+dump 		8 bath_atoms custom 1 coord_bath_at_sort.dat id x y z 
+dump_modify 	8 sort id
+
+
+dump 		5 bath_reduced custom 1 coord_bathreduced_at.dat id x y z mass
+
+dump 		15 bath_reduced custom 1 coord_bathreduced_at_sort.dat id x y z mass
+dump_modify 	15 sort id
+
+
+dump 		9 all custom 1 coord_all_at.dat id x y z
+
+dump 		19 all custom 1 coord_all_at_sort.dat id x y z
+dump_modify 	19 sort id
+
+
+
+# ---------- Define Loop-script --------------------- 
+# ---------- Calculate all forces for each atomic displament
+
+print    "Nb atom tot  = ${nbtot}"
+print    "Nb atom bath  = ${nbbath}"
+print    " "
+
+label loop
+
+variable l loop ${nbtot}
+
+print    "A = $l"
+
+group 		ok id $l
+
+print "Execution"
+
+# ---------- Displace atom $l : x + dx, y, z --------------------- 
+displace_atoms 	ok move 0.01 0 0 units box
+run 		1
+
+# ---------- Displace atom $l : x - dx, y, z --------------------- 
+displace_atoms 	ok move -0.02 0 0 units box
+run 		1
+
+# ---------- Displace atom $l : x, y + dy, z --------------------- 
+displace_atoms 	ok move 0.01 0.01 0 units box
+run 		1
+
+# ---------- Displace atom $l : x, y - dy, z --------------------- 
+displace_atoms 	ok move 0 -0.02 0 units box
+run 		1
+
+# ---------- Displace atom $l : x, y, z + dz --------------------- 
+displace_atoms 	ok move 0 0.01 0.01 units box
+run 		1
+
+# ---------- Displace atom $l : x, y, z + dz --------------------- 
+displace_atoms ok move 0 0 -0.02 units box
+run 		1
+
+# ---------- Back to  atom $l : x, y, z --------------------- 
+displace_atoms 	ok move 0 0 0.01 units box
+
+
+group 		ok delete
+
+next    l
+
+jump   		get_all_forces_model_small_sys_C_withCregion.lmp loop
+
+variable    	l delete 
+
+
+
+
+

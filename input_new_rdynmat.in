@@ -1,0 +1,9 @@
+1				# units in LAMMPS: 1=metal, 2=real
+175              		# Nb coef Lanczos recursion method
+0				# continued fraction termination 0: finite Im, 1: (a,b)_infty
+15.00              		# Im part Lorentzian and option 0 for cont_frac
+1100    			# Nb w-points for DOS plot
+05       			# segment length - for eigen/w_k freq search & refine
+0   0.05d0			# extra w_k peak : type and extra,  meig <- meig * (1 + extra)
+25				# initial scaling for amplitude [in %] for init_fit, between 5% to 200%  
+20				# initial scaling for tau_k for init_fit, between 10 to 200  
