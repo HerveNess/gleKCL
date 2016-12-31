@@ -7,9 +7,9 @@ LAMMPS source C++ code, headers:
 ===================================
 for the GLE 1 bath problem
 ===================================
-fix_gle.cpp
+fix_gle1bath.cpp
 
-fix_gle.h
+fix_gle1bath.h
 
 ===================================
 for the GLE 2 baths problem
