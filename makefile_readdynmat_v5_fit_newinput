@@ -1,0 +1,29 @@
+    # Makefile for the Polarisation Matrix code
+    # HN 16/01/14
+    #
+    FC = gfortran #pgf90
+    #FFLAGS = -C -g -XlistE -dbl -native -dalign
+    #FFLAGS = -O3 -dbl -native -dalign
+    #FFLAGS = -fbounds-check #-Wall 
+    #LDLIBS = -lnag-spl
+    LDLIBS = -llapack -lblas
+    OBJS = polar_matrix_PIbb_readdynmat_v5_fit_newinput.o parameters_and_co_readdynmat_v5_fit_newinput.o
+    #
+    polar_matrix_PIbb_readdynmat_v5_fit_newinput: $(OBJS)
+	$(FC) $(FFLAGS) -o $@ $(OBJS) $(LDLIBS) -o $@
+    #
+    polar_matrix_PIbb_readdynmat_v5_fit_newinput.o: parameters_and_co_readdynmat_v5_fit_newinput.mod polar_matrix_PIbb_readdynmat_v5_fit_newinput.f90
+	$(FC) -c $(FFLAGS) polar_matrix_PIbb_readdynmat_v5_fit_newinput.f90 $(LDLIBS)
+    #
+    parameters_and_co_readdynmat_v5_fit_newinput.o: parameters_and_co_readdynmat_v5_fit_newinput.f90
+	$(FC) -c $(FFLAGS) parameters_and_co_readdynmat_v5_fit_newinput.f90 $(LDLIBS)
+    #
+    parameters_and_co_readdynmat_v5_fit_newinput.mod: parameters_and_co_readdynmat_v5_fit_newinput.o parameters_and_co_readdynmat_v5_fit_newinput.f90
+	$(FC) -c $(FFLAGS) parameters_and_co_readdynmat_v5_fit_newinput.f90 $(LDLIBS)
+
+    clean:
+	 rm -f *.log *.fln *~
+    #
+    veryclean:
+	 rm -f *.log *.fln *~ *.o *.mod
+
