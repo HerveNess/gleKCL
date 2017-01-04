@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html style="" class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang="en"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>fix gle2baths command — LAMMPS documentation</title>
+  
+
+  
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="fix%20gle2baths%20command%20%E2%80%94%20LAMMPS%20documentation_files/theme.css" type="text/css">
+  
+
+  
+    <link rel="stylesheet" href="fix%20gle2baths%20command%20%E2%80%94%20LAMMPS%20documentation_files/lightbox.css" type="text/css">
+  
+
+  
+    <link rel="top" title="LAMMPS documentation" href="http://lammps.sandia.gov/doc/index.html"> 
+
+  
+  <script src="fix%20gle2baths%20command%20%E2%80%94%20LAMMPS%20documentation_files/modernizr.js"></script>
+
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document"><div style="display: none;" id="MathJax_Message"></div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="http://lammps.sandia.gov/doc/Manual.html" class="icon icon-home"> LAMMPS
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input name="q" placeholder="Search docs" type="text">
+    <input name="check_keywords" value="yes" type="hidden">
+    <input name="area" value="default" type="hidden">
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="http://lammps.sandia.gov/doc/Section_intro.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://lammps.sandia.gov/doc/Section_start.html">2. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://lammps.sandia.gov/doc/Section_commands.html">3. Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://lammps.sandia.gov/doc/Section_packages.html">4. Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://lammps.sandia.gov/doc/Section_accelerate.html">5. Accelerating LAMMPS performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://lammps.sandia.gov/doc/Section_howto.html">6. How-to discussions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://lammps.sandia.gov/doc/Section_example.html">7. Example problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://lammps.sandia.gov/doc/Section_perf.html">8. Performance &amp; scalability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://lammps.sandia.gov/doc/Section_tools.html">9. Additional tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://lammps.sandia.gov/doc/Section_modify.html">10. Modifying &amp; extending LAMMPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://lammps.sandia.gov/doc/Section_python.html">11. Python interface to LAMMPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://lammps.sandia.gov/doc/Section_errors.html">12. Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://lammps.sandia.gov/doc/Section_history.html">13. Future and history</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="http://lammps.sandia.gov/doc/Manual.html">LAMMPS</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="http://lammps.sandia.gov/doc/Manual.html">Docs</a> »</li>
+      
+    <li>fix gle2baths command</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="http://lammps.sandia.gov/">Website</a>
+            <a href="http://lammps.sandia.gov/doc/Section_commands.html#comm">Commands</a>
+        
+      </li>
+  </ul>
+  <hr>
+  
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="fix-gle2baths-command">
+<span id="index-0"></span><h1>fix gle2baths command</h1>
+<div class="section" id="syntax">
+<h2>Syntax</h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">fix</span> <span class="n">ID</span> <span class="nb">id</span><span class="o">-</span><span class="n">group</span> <span class="n">gle2baths</span> <span class="n">Delta</span> <span class="n">seed</span> <span class="nb">id</span><span class="o">-</span><span class="n">group_bath1</span> <span class="n">T1</span> <span class="n">mass_aDOF_1</span> <span class="n">doffile1</span> <span class="n">filename_dof_file1</span> <span class="n">bathfile1</span> <span class="n">filename_bathcoef_file1</span> <span class="nb">id</span><span class="o">-</span><span class="n">group_bath2</span> <span class="n">T2</span> <span class="n">mass_aDOF_2</span> <span class="n">doffile2</span> <span class="n">filename_dof_file2</span> <span class="n">bathfile2</span> <span class="n">filename_bathcoef_file2</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>ID, group-ID are documented in <a class="reference internal" href="http://lammps.sandia.gov/doc/fix.html"><span class="doc">fix</span></a> command</li>
+<li>id-group = group-ID for the central system on which to perform the GLE dynamics</li>
+<li>gle2baths = style name of this fix command</li>
+<li>Delta = small real number (usually 1% or smaller) for the calculations of the derivatives of the forces between the central region and the bath-regions</li>
+<li>seed = random number seed to use for generating noise (positive integer)</li>
+<li>id-group_bath1, id-group_bath2 = group-ID for the atoms in the bath $\nu$ = 1, 2 reduced regions (Note that these atoms are kept frozen during the GLE-2B run)</li>
+<li>T1, T2 = temperature of the bath $\nu$ = 1, 2</li>
+<li>mass_aDOF_1, mass_aDOF_2 = mass of the auxiliary DOF associated with the bath $\nu$ = 1, 2</li>
+<li>filename_dof_file1, filename_dof_file2 = name of the files containing the set of parameters $\{ \tau_{k_\nu}, \omega_{k_\nu} \} $ for the auxiliary DOF $k_\nu$ = 1, ..., $N_\nu^{\rm aDOF}$ associated with the bath &nu; = 1, 2</li>
+<li>filename_bathcoef_file1, filename_bathcoef_file2 = name of the files containing the set of parameters $\{ c_{b_\nu}^{(k_\nu)} \}$ for the auxiliary DOF $k_\nu$ associated with the bath $\nu$ = 1, 2</li>
+</ul>
+
+</div>
+
+<div class="section" id="examples">
+<h2>Examples</h2>
+
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">fix</span> <span class="mi">555</span> <span class="nb">system_atoms</span> <span class="n">gle2baths</span> <span class="mf">0.01</span> <span class="mi">2</span> <span class="mi">699483</span> <span class="nb">bathL_reduced</span> <span class="mf">1100.0</span> <span class="mf">32.0</span> <span class="n">doffile1</span> <span class="nb">gle_vdofL_info.dat</span> <span class="n">bathfile1</span> <span class="nb">gle_bathL_atoms_info.dat</span> <span class="nb">bathR_reduced</span> <span class="mf">400.0</span> <span class="mf">32.0</span> <span class="n">doffile2</span> <span class="nb">gle_vdofR_info.dat</span> <span class="n">bathfile2</span> <span class="nb">gle_bathR_atoms_info.dat</span>
+</pre></div>
+
+</div>
+
+
+<div class="section" id="description">
+<h2>Description</h2>
+<p>Apply the Generalized Langevin Equation (GLE) thermostats (2 independent thermal baths $\nu$ = 1,2) as described in <a class="reference internal" href="#ness2016"><span class="std std-ref">(Ness2016)</span></a>
+
+$$\frac{dr_{i\alpha}}{dt}  = p_{i\alpha} / m_i$$
+
+$$\frac{dp_{i\alpha}}{dt} = F_{i\alpha}(\mathbf{r})
+-\int_{-\infty}^{t}{\rm d}t' \sum_{\nu, i'\alpha'} K^{(\nu)}_{i\alpha,i'\alpha'}(t,t';\mathbf{r})
+	\dot{r}_{i'\alpha'}(t')
++ \sum_\nu \eta^{(\nu)}_{i\alpha}(t;{\bf r}) ,$$
+
+<p>where $F_{i\alpha}$ is the total force (including polarisation effects of the atoms of the baths) acting on atom $i$, of the central region, in the direction $\alpha=x,y,z$,
+the stochastic forces (colored noise $\eta^{(\nu)}_{i\alpha}(t;{\bf r})$) are associated with each independent bath $\nu$ and
+$K^{(\nu)}_{i\alpha,i'\alpha'}(t,t';\mathbf{r})$ is the friction (memory) Kernel.</p>
+
+<p>The latter is related to the vibrational properties of the baths, described by their respective polarisation matrix $\Pi_{b_\nu,b'_\nu}(t-t')$ where 
+the baths degrees of freedom (DOF) $b_\nu \equiv l_1 \gamma$ correspond to bath atom $l_\nu$ and Cartesian coordinate $\gamma$.</p>
+
+<p>To solve the GLE, each degree of freedom $i\alpha$ in the thermostatted group (id-group) is supplemented
+with two sets of auxiliary degrees of freedom (aDOF) associated with the sets of parameters $\{ c_{b_\nu}^{(k_\nu)}, \tau_{k_\nu}, \omega_{k_\nu} \} $.
+These parameters are determined from the mapping of the polarisation matrix $\Pi_{b_\nu,b'_\nu}(t-t')$ onto the following specific analytic form.</p>
+ 
+<p> After Fourier transformation, the mapping is given by:</p>
+
+$$\Pi_{b_\nu,b_\nu^\prime}(\omega) \rightarrow
+\sum_{k_\nu} c_{b_\nu}^{(k_\nu)}c_{b_\nu^\prime}^{(k_\nu)}
+\left[ \frac{\tau_{k_\nu}}{1+(\omega-\omega_{k_\nu})^{2}\tau_{k_\nu}^{2}}
+      +\frac{\tau_{k_\nu}}{1+(\omega+\omega_{k_\nu})^{2}\tau_{k_\nu}^{2}}\right] .$$
+
+<p> 
+Before being able to run the GLE-2B fix, one has to determine the sets of coefficients $\{ c_{b_\nu}^{(k_\nu)}, \tau_{k_\nu}, \omega_{k_\nu} \} $.
+For this, a 3 steps operation should be performed:
+</p>
+
+<p>
+(1) Build the entire system, as show schematically below, with "large" bath regions (regions in pink with and without pattern). 
+ Define 5 different groups: one group
+ for the central system (group named  <span class="nb">system_atoms</span>
+ in the example given above) on with the dissipative GLE-2B is performed (here the region in blue), 
+ two groups for the two baths, 
+ and two further groups for the bath reduced regions (pink regions with no pattern). These groups are named <span class="nb">bathL_reduced</span> and 
+ <span class="nb">bathR_reduced</span> in the 
+ example give above. 
+ The bath reduced regions should be a subspace of the corresponding "large" bath regions. 
+</p>
+<img src="System_bath1and2_bis.jpg" alt="System" class="align-center"  />
+
+<p>
+<li> 
+(2) 
+Calculate the dynamical matrix for the two "large" bath regions (pink regions). There is a LAMMPS script printing out the forces $f_{j\beta}$
+on all atoms $j$ in the bath $\nu$ when each atom $i$ in the bath are moved, by the small amount  <span class="mf">$\pm\Delta$</span>, in the three
+Cartesian $\alpha=x,y,z$.
+</li>
+<li>
+A post-treatment code calculates the derivatives of the forces
+as $d_{j\beta,i\alpha} = \partial f_{j\beta}/\partial r_{i\alpha} \equiv ( f^{(+,i\alpha)}_{j\beta} - f^{(-,i\alpha)}_{j\beta} ) / \Delta$
+where $f^{(\pm,i\alpha)}_{j\beta}=f_{j\beta}[r_{i\alpha} \rightarrow r_{i\alpha} \pm \Delta]$.
+</li>
+<li>
+The Dynamical Matrix is obtained after symmetrization $D_{i\alpha,j\beta}= \frac{2}{\sqrt{m_i m_j}}\ ( d_{i\alpha,j\beta} + d_{j\beta,i\alpha} )$.
+</li>
+</p>
+
+<p>
+<li>
+(3) Calculate the polarisation matrix $\Pi_{b_\nu,b'_\nu}(\omega)$ for the bath DOF as described 
+ in <a class="reference internal" href="#ness2015"><span class="std std-ref">(Ness2015)</span></a>. The calculations need to be performed only
+ for the bath DOF which are in the bath reduced region. As the interaction between is finite range, the matrix elements 
+ $g_{i\alpha,b_\nu} \equiv g_{i\alpha,l_\nu\gamma}$ vanish when the distance between atom $i$ (in the central region) and atom $l_\nu$ (in the
+ bath $\nu$ region) is larger than the cut-off of inter-atomic potential.
+ Therefore,  one needs to know the $\Pi_{b_\nu,b'_\nu}(\omega)$ 
+ only for the bath atoms $l_\nu$ and $l'_\nu$ which are in direct interaction with the atoms in the central region.
+</li>
+<li>
+A post-treatment code calculates the polarisation matrix elements $\Pi_{ii}$, $\Pi_{jj}$ and $\Pi_{ij}$ for a given set of two indexes $i,j$. This permits the
+user to define the wanted number of aDOF $N_\nu^{\rm aDOF}$, essentially the number of peaks, located at $\omega_{k_\nu}$, in the mapping
+described above. The user also specifies the energy spacing of the $\omega_{k_\nu}$ on an energy grid ranging from $\omega = 0$ to
+$\omega_{\rm max}$: linear to quartic spacing around the origin $\omega = 0$.
+The optimization of the corresponding paramaters $\{ c_{b_\nu}^{(k_\nu)}, \tau_{k_\nu} \} $ for the mapping is performed automatically, 
+and the user can check visually is the fit is satisfactory.
+</li>
+<li>
+Then, a second post-treatment code calculates the whole set of parameters of all the polarisation matrix elements $\Pi_{b_\nu,b'_\nu}$ 
+for all the bath atoms $l_\nu$ and $l'_\nu$ in the bath $\nu$ reduced region.
+</li>
+</p>
+ 
+</div>
+
+<div class="section" id="restart-fix-modify-output-run-start-stop-minimize-info">
+<h2>Restart, fix_modify, output, run start/stop, minimize info</h2>
+</div>
+
+<div class="section" id="restrictions">
+<h2>Restrictions</h2>
+</div>
+
+<div class="section" id="related-commands">
+<h2>Related commands</h2>
+<p><a class="reference internal" href="http://lammps.sandia.gov/doc/fix_gle.html"><span class="doc">fix gle</span></a>, <a class="reference internal" href="http://lammps.sandia.gov/doc/fix_gld.html"><span class="doc">fix gld</span></a></p>
+<hr class="docutils">
+<p id="ness2016"><strong>(Ness2016)</strong> H. Ness, A. Genina, L. Stella, C. D. Lorenz, and L. Kantorovich, Phys. Rev. B 93, 174303 (2016). </p>
+<p id="ness2015"><strong>(Ness2015)</strong> H. Ness, L. Stella, C. D. Lorenz, and L. Kantorovich, Phys. Rev. B 91, 014301 (2015). </p>
+<p id="stella2014"><strong>(Stella2014)</strong> L. Stella, C. D. Lorenz, and L. Kantorovich, Phys. Rev. B 89, 134303 (2014). </p>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+        © Copyright 2013 Sandia Corporation.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+
+
+  
+
+  
+  
+    <script type="text/javascript" src="fix%20gle2baths%20command%20%E2%80%94%20LAMMPS%20documentation_files/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+
+<div style="display: none;" id="lightboxOverlay" class="lightboxOverlay"></div><div style="display: none;" id="lightbox" class="lightbox"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image" src=""><div class="lb-nav"><a class="lb-prev" href=""></a><a class="lb-next" href=""></a></div><div class="lb-loader"><a class="lb-cancel"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div></div></body></html>
